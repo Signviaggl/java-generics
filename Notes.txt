@@ -1,0 +1,107 @@
+Interfaces								Implementations
+**********								***************
+Multiple Data Structures				Specific Data Structures
+Functional Characteristics				Performance Characteristics
+Prefer as variable type					Concrete and Instantiable
+Often has a popular implementation
+
+Wildcards;
+**********
+Upper Bounded	:		List<? extends Cls>
+Lower Bounded	:		List<? super Cls>
+Unbounded		:		List<?>
+
+Upper Bounded	: Accept any object extends class 'Cls'
+Lower Bounded	: Accept ?
+Unbounded		: 
+
+? extends;
+**********
+Declare an upper bound for the type parameter
+To get data out of the parameter
+Covariance
+
+? super;
+********
+Declare a lower bound for the type parameter
+To put data into the parameter
+Contravariance
+
+- Get data with extends
+- Put data with super
+- Use ? Instead of ? extends Object
+- Get and Put without wildcards
+
+TYPE ERASURE
+************
+javap -s -c -classpath . com.levo.generics.f_rawtypes_erasure.Erasure
+
+D:\MainEclipse\tezgah\java-generics\target\classes\com\levo\generics\f_rawtypes_erasure>javap -s -c -classpath . Erasure
+
+
+
+javap -s -c -classpath target\classes\com\levo\generics\f_rawtypes_erasure Erasure
+
+JAVAP WITH -S;
+**************
+javap -s -classpath target\classes\com\levo\generics\f_rawtypes_erasure Erasure
+
+D:\MainEclipse\tezgah\java-generics>javap -s -classpath target\classes\com\levo\generics\f_rawtypes_erasure Erasure
+Warning: Binary file Erasure contains com.levo.generics.f_rawtypes_erasure.Erasure
+Compiled from "Erasure.java"
+public class com.levo.generics.f_rawtypes_erasure.Erasure<T, B extends java.lang.Comparable<B>> {
+  public com.levo.generics.f_rawtypes_erasure.Erasure();
+    descriptor: ()V
+
+  public void unbounded(T);
+    descriptor: (Ljava/lang/Object;)V
+
+  public void lists(java.util.List<java.lang.String>, java.util.List<java.util.List<T>>);
+    descriptor: (Ljava/util/List;Ljava/util/List;)V
+
+  public void bounded(B);
+    descriptor: (Ljava/lang/Comparable;)V
+}
+
+
+JAVAP WITH -S -C;
+*****************
+javap -s -c -classpath target\classes\com\levo\generics\f_rawtypes_erasure Erasure
+
+D:\MainEclipse\tezgah\java-generics>javap -s -c -classpath target\classes\com\levo\generics\f_rawtypes_erasure Erasure
+Warning: Binary file Erasure contains com.levo.generics.f_rawtypes_erasure.Erasure
+Compiled from "Erasure.java"
+public class com.levo.generics.f_rawtypes_erasure.Erasure<T, B extends java.lang.Comparable<B>> {
+  public com.levo.generics.f_rawtypes_erasure.Erasure();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #8                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public void unbounded(T);
+    descriptor: (Ljava/lang/Object;)V
+    Code:
+       0: return
+
+  public void lists(java.util.List<java.lang.String>, java.util.List<java.util.List<T>>);
+    descriptor: (Ljava/util/List;Ljava/util/List;)V
+    Code:
+       0: aload_1
+       1: iconst_0
+       2: invokeinterface #26,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       7: checkcast     #32                 // class java/lang/String
+      10: astore_3
+      11: return
+
+  public void bounded(B);
+    descriptor: (Ljava/lang/Comparable;)V
+    Code:
+       0: return
+}
+
+TYPE INTERSECTION
+*****************
+<T extends Object & Comparable<? super T>>
+
+T max (Collection<? extends T> coll)
