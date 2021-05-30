@@ -21,7 +21,7 @@ public class Injector {
 		} else {
 			objectGraph.put(type.getClass(), type);
 		}
-		
+		 
 		return (T) instantiate(type);
 	}
 	

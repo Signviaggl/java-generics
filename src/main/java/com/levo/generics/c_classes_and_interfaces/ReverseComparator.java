@@ -16,3 +16,13 @@ public class ReverseComparator<T> implements Comparator<T> {
 	}
 
 }
+
+/*public class ReverseComparator implements Comparator<Person> {
+
+	@Override
+	public int compare(final Person left, final Person right) {
+		return -1* Integer.compare(left.getAge(), right.getAge());
+	}
+
+}
+*/

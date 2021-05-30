@@ -12,9 +12,9 @@ import org.junit.Test;
 
 public class PersonStorageTest {
 	
-	private Partner donDraper = new Partner("Don Draper", 89);
-	private Partner bertCooper = new Partner("Bert Cooper", 100);
-	private Employee peggyOlson = new Employee("Peggy Olson", 65);
+	private Partner parntner1 = new Partner("Don Draper part1", 89);
+	private Partner partner2 = new Partner("Bert Cooper part2", 100);
+	private Employee emp1 = new Employee("Peggy Olson Emp1", 65);
 	
 	static File file;
 	static PersonSaver saver;
@@ -46,25 +46,25 @@ public class PersonStorageTest {
 	public void savesAndLoadsArraysOfPeople() throws Exception {
 		
 		List<Partner> persons = new ArrayList<>();
-		persons.add(donDraper);
-		persons.add(bertCooper);
+		persons.add(parntner1);
+		persons.add(partner2);
 		
 		saver.saveAll(persons);
 		
-		assertEquals(donDraper, loader.load());
-		assertEquals(bertCooper, loader.load());
+		assertEquals(parntner1, loader.load());
+		assertEquals(partner2, loader.load());
 	}
 	
 	@Test
 	public void loadsListsOfPeople() throws Exception {
-		saver.save(donDraper);
-		saver.save(peggyOlson);
+		saver.save(parntner1);
+		saver.save(emp1);
 		
 		List<Hayvan> people = new ArrayList<>();
 		loader.loadAll(people);
 		
-		assertEquals(donDraper, people.get(0));
-		assertEquals(peggyOlson, people.get(1));
+		assertEquals(parntner1, people.get(0));
+		assertEquals(emp1, people.get(1));
 	}
 	
 }

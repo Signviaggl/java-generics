@@ -39,6 +39,8 @@ public class LambdaExamples {
 						Collectors.partitioningBy(person -> person.getAge() > 80, Collectors.counting()));
 		
 		System.out.println(oldAndYoungPeople);
+		// this is my comment
+		
 	}
 
 }
